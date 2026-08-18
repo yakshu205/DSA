@@ -1,0 +1,75 @@
+import csv
+
+stock_prices = {
+    "AAPL":180,
+    "TSLA":250,
+    "GOOGL":140,
+    "MSFT":420,
+    "AMZN":170
+}
+
+portfolio={}
+total_investment=0
+
+print("="*50)
+print("📈 STOCK PORTFOLIO TRACKER")
+print("="*50)
+
+print("\nAvailable Stocks:")
+for stock, price in stock_prices.items():
+    print(f"{stock} : ${price}")
+
+num_stocks=int(input("\nHow many different stocks do you own? "))
+
+for i in range(num_stocks):
+    stock_name=input("\nEnter Stock Symbol: ").upper()
+
+    if stock_name not in stock_prices:
+        print("❌ Stock not available!")
+        continue
+
+    quantity=int(input("Enter Quantity: "))
+
+    investment=stock_prices[stock_name] * quantity
+
+    portfolio[stock_name]={
+        "quantity": quantity,
+        "investment": investment
+    }
+
+    total_investment+=investment
+
+print("\n"+"="*50)
+print("📊 PORTFOLIO SUMMARY")
+print("="*50)
+
+for stock, details in portfolio.items():
+    print(
+        f"{stock} | Qty: {details['quantity']} | "
+        f"Investment: ${details['investment']}"
+    )
+print("\n💰 Total Investment Value: $", total_investment)
+
+save=input("\nSave report to CSV file? (y/n): ").lower()
+if save=="y":
+    with open("portfolio_report.csv", "w", newline="") as file:
+        writer = csv.writer(file)
+
+        writer.writerow(
+            ["Stock", "Quantity", "Investment"]
+        )
+        for stock, details in portfolio.items():
+            writer.writerow([
+                stock,
+                details["quantity"],
+                details["investment"]
+            ])
+
+        writer.writerow([])
+        writer.writerow(
+            ["Total Investment", total_investment]
+        )
+
+    print("✅ Report saved as portfolio_report.csv")
+
+print("\nThank you for using Portfolio Tracker!")
