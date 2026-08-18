@@ -1,4 +1,4 @@
-#include<iostream>
+#include<bits\stdc++.h>
 using namespace std;
 class Node{
     public:
@@ -12,7 +12,7 @@ class Node{
 
 class LinkedList{
       public:
-
+    unordered_map<int,Node*>m;
       Node* head;
       Node* tail;
       LinkedList(){
@@ -20,7 +20,7 @@ class LinkedList{
       }
     
       //*******************************************part-1 of prectical-1 start***************************************************************
-
+ 
       //insert at front_______________________;
       void push_front(int val){
         Node* newNode = new Node(val);
@@ -136,6 +136,8 @@ class LinkedList{
               delete temp;
 
        }
+
+       
 
     void reverse_print(Node* temp){
         if(temp == NULL){

@@ -1,4 +1,4 @@
-#include<iostream>
+#include<bits\stdc++.h>
 using namespace std;
 class Node{
     public:
@@ -13,6 +13,7 @@ class Node{
 };
 class LinkedList{
   public:
+   unordered_map<int,Node*>m;
     Node* head=NULL;
     Node* tail=NULL;
 
@@ -22,13 +23,15 @@ class LinkedList{
 
         if(head==NULL){
             head=tail=newNode;
+
         }
        else{
            newNode->next=head;
            head->prev=newNode;
            head=newNode;
-       }
 
+       }
+      m[val]=newNode;
 
     }
  
@@ -61,6 +64,21 @@ class LinkedList{
         temp->next=newNode;
 
     }
+    //remove any not using finding value and with O(1) time complexity and O(n) space complexity
+    void remove_at(int val){
+               if(m.find(val) != m.end()){
+                Node*temp=m[val];
+                temp->prev->next=temp->next;
+                temp->next->prev=temp->prev;
+                temp->next=NULL;
+                temp->prev=NULL;
+                delete temp;
+               }
+               else{
+                cout<<"no value found"<<endl;
+               }
+               
+       }
 
 
     //pop from front
@@ -120,16 +138,16 @@ class LinkedList{
 
 int main(){
     LinkedList dll;
-    dll.push_back(1);
-      dll.push_back(2);
-      dll.push_back(3);
-      dll.push_back(5);
-      dll.push_back(6);
+    dll.push_front(1);
+      dll.push_front(2);
+      dll.push_front(3);
+      dll.push_front(5);
+      dll.push_front(6);
 
       dll.push_front(9);
       dll.push_front(10);
 
-      dll.push_at(4,3);
+     dll.remove_at(3);
 
 
       dll.print();

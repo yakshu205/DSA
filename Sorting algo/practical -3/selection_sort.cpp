@@ -52,16 +52,17 @@ int main(){
     DSA d;
     int arr[]={4,1,5,2,3};
     int n=5;
+    cout<<"Bubble Sort : ";
     d.bubblesort(arr,n);
     d.printarray(arr,n);
 
-    cout<<"***********************"<<endl;
-
+    cout<<"\n***********************"<<endl;
+    cout<<"Selection Sort : ";
     d.selectionsort(arr,n);
     d.printarray(arr,n);
 
-    cout<<"***********************"<<endl;
-
+    cout<<"\n***********************"<<endl;
+     cout<<"insertion Sort : "<<endl;
     d.insertionsort(arr,n);
     d.printarray(arr,n);
 
