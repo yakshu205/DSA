@@ -106,9 +106,5 @@ int main(){
       dll.push_front(10);
       dll.pop_back();
       dll.pop_front();
-
-     
-
-
       dll.print();
 }
